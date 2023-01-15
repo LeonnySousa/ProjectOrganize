@@ -17,49 +17,34 @@ import controller.TaskController;
 import model.Project;
 import model.Task;
 import util.ConnectionFactory;
+import view.MainScreen;
 
 public class App {
 
     public static void main(String[] args){
-         
-        // Testando Project Controller:
-        /*
-           ProjectController projectController = new ProjectController();
-           Project project = new Project();
-         
-         
-           project.setName("Meu Segundo Projeto");
-           project.setId(2);
-           project.setDescription("Teste do meu segundo projeto");
-           // projectController.update(project);
-           // projectController.save(project);
-           // projectController.removeById(2);
-         
-           List<Project> projects = projectController.getAll();
-           System.out.println("Total de projetos no banco de dados: " + projects.size());
-       */
-        
-        // Testando Task Controller:
-        
+           
+           // Testando Task Controller:
+           /*
            TaskController taskController = new TaskController();
            Task task = new Task();
          
          
            task.setName("Minha Primeira Tarefa");
-           task.setId(1);
-           task.setIdProject(1);
+           task.setId(23);
+           task.setIdProject(10);
            task.setDescription("update da minha primeira tarefa");
            task.setIsCompleted(true);
            task.setDeadline(new Date());
            // taskController.update(task);
            // taskController.save(task);
            // taskController.removeById(2);
-           taskController.removeById(1);
+           taskController.update(task);
            List<Task> tasks = taskController.getAll(1);
            System.out.println("Total de projetos no banco de dados: " + tasks.size());
+           */
            
-        
-        
+           MainScreen mainscreen = new MainScreen();
+           mainscreen.setVisible(true);
          
     }
 }
