@@ -29,8 +29,7 @@ public class TaskDialogScreenUpdate extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         controller = new TaskController();
-        //jTextFieldName.setText("Tarefa");
-        
+        //jTextFieldName.setText("Tarefa"); 
     }
     
     public void readTask(Task t){
@@ -312,10 +311,10 @@ public class TaskDialogScreenUpdate extends javax.swing.JDialog {
     public void setProject(Project project) {
         this.project = project;
     }
-
+/*
     TaskDialogScreenUpdate(Task task) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+*/
 
 }

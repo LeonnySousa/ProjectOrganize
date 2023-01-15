@@ -36,7 +36,7 @@ public class TaskTableModel extends AbstractTableModel{
     
     
     public boolean isCellEditable(int rowIndex, int columnIndex){
-        return columnIndex ==3;
+        return columnIndex == 3;
     }
     
     
@@ -48,16 +48,17 @@ public class TaskTableModel extends AbstractTableModel{
         return this.getValueAt(0,columnIndex).getClass();
     }
     
-
+   
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        
         switch(columnIndex){
             case 0:
                 return tasks.get(rowIndex).getName();
             case 1: 
                 return tasks.get(rowIndex).getDescription();
             case 2:
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy");
                 return dateFormat.format(tasks.get(rowIndex).getDeadline());
             case 3: 
                 return tasks.get(rowIndex).isIsCompleted();
@@ -87,6 +88,7 @@ public class TaskTableModel extends AbstractTableModel{
     }
 
     public void setTasks(List<Task> tasks) {
+        this.tasks.clear();
         this.tasks = tasks;
     }
     

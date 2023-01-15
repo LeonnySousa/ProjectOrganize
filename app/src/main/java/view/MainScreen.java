@@ -12,7 +12,14 @@ import model.Project;
 import model.Task;
 import controller.ProjectController;
 import controller.TaskController;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import util.ButtonColumnRenderer;
 import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
@@ -31,7 +38,7 @@ public class MainScreen extends javax.swing.JFrame {
     TaskController taskController;
     
     DefaultListModel projectsModel;
-    TaskTableModel taskModel;
+    TaskTableModel taskTableModel;
     
     
     public MainScreen() {
@@ -209,7 +216,7 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelEmptyListLayout.setVerticalGroup(
             jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyListLayout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addGap(320, 320, 320)
                 .addComponent(jLabelEmptyListIcon)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmptyListTitle)
@@ -254,7 +261,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelProjectsAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelProjectsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                    .addComponent(jLabelProjectsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -291,9 +298,9 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(jPanelTasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTasksTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelTasksLayout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabelTasksAdd)
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -326,7 +333,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jPanelTasks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                     .addComponent(jPanelProjectList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -369,7 +376,7 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         int rowIndex  = jTableTasks.rowAtPoint(evt.getPoint());
         int columnIndex  = jTableTasks.columnAtPoint(evt.getPoint());
-        Task task = taskModel.getTasks().get(rowIndex);
+        Task task = taskTableModel.getTasks().get(rowIndex);
         
         switch(columnIndex){
         
@@ -381,11 +388,19 @@ public class MainScreen extends javax.swing.JFrame {
                 taskDialogScreenUpdate.readTask(task);
                 taskDialogScreenUpdate.setVisible(true);
                 
+                taskDialogScreenUpdate.addWindowListener(new WindowAdapter(){
+                      public void windowClosed(WindowEvent e){
+                            int projectIndex = jListProjects.getSelectedIndex();
+                            Project project = (Project) projectsModel.get(projectIndex);
+                            loadTasks(project.getId());
+                      }       
+                });
+                
                 break;
                 
             case 5:
                 taskController.removeById(task.getId());
-                taskModel.getTasks().remove(task);
+                taskTableModel.getTasks().remove(task);
                 int  projectIndex = jListProjects.getSelectedIndex(); 
                 Project project = (Project) projectsModel.get(projectIndex);
                 loadTasks(project.getId());
@@ -468,6 +483,13 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getTableHeader().setForeground(new Color(255,255,255));
         jTableTasks.setAutoCreateRowSorter(true);
         
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalTextPosition(JLabel.CENTER);
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
+        jTableTasks.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        jTableTasks.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        
         jTableTasks.getColumnModel().getColumn(2).
                 setCellRenderer(new DeadlineColumnCellRenderer());
         
@@ -493,22 +515,27 @@ public class MainScreen extends javax.swing.JFrame {
         projectsModel = new DefaultListModel();
         loadProjects();
         
-        taskModel = new TaskTableModel();
-        jTableTasks.setModel(taskModel);
+        taskTableModel = new TaskTableModel();
+        jTableTasks.setModel(taskTableModel);
         
         
         if(!projectsModel.isEmpty()){
-            jListProjects.setSelectedIndex(1);
-            Project project = (Project) projectsModel.get(1);
+            jListProjects.setSelectedIndex(0);
+            Project project = (Project) projectsModel.get(0);
             loadTasks(project.getId());
         }
     }
     
     
     public void loadTasks(int idProject){
-    
-        List<Task> tasks = taskController.getAll(idProject);
-        taskModel.setTasks(tasks);
+        taskTableModel = new TaskTableModel();
+        jTableTasks.setModel(taskTableModel);
+        decorateTableTask();
+        
+        List<Task> tasks = new ArrayList<Task>();
+        tasks.clear();
+        tasks = taskController.getAll(idProject);
+        taskTableModel.setTasks(tasks);
         showJTableTasks(!tasks.isEmpty());
     }
     

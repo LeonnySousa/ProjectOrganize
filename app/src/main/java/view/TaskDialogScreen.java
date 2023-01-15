@@ -27,9 +27,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controller = new TaskController();
-        jTextFieldName.setText("Tarefa");
-        
+        controller = new TaskController();        
     }
 
     TaskDialogScreen() {
@@ -201,9 +199,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private void jLabelTaskSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTaskSaveMouseClicked
         // TODO add your handling code here:
         
-        
-        
-        
+          
         try{
             if(jTextFieldName.getText().isEmpty() || jFormattedTextFieldDeadline.getText().isEmpty()){
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Tarefa: Os Campos Name e Deadline são obrigatórios!"); 
