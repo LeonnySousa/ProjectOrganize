@@ -399,11 +399,18 @@ public class MainScreen extends javax.swing.JFrame {
                 break;
                 
             case 5:
+                
+                DeleteDialogScreen deleteDialogScreen = new DeleteDialogScreen(this, rootPaneCheckingEnabled);
+                deleteDialogScreen.readTask(task);
+                deleteDialogScreen.setVisible(true);
+                
+                /*
                 taskController.removeById(task.getId());
+                */
                 taskTableModel.getTasks().remove(task);
                 int  projectIndex = jListProjects.getSelectedIndex(); 
                 Project project = (Project) projectsModel.get(projectIndex);
-                loadTasks(project.getId());
+                loadTasks(project.getId());          
                 break;           
         
         }
