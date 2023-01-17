@@ -216,13 +216,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelEmptyListLayout.setVerticalGroup(
             jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyListLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addComponent(jLabelEmptyListIcon)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmptyListTitle)
                 .addGap(35, 35, 35)
                 .addComponent(jLabelEmptyListSubTitle)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanelEmptyList, java.awt.BorderLayout.PAGE_START);

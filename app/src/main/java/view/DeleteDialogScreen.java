@@ -37,14 +37,26 @@ public class DeleteDialogScreen extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonTaskDeleteYes1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButtonTaskDeleteYes = new javax.swing.JButton();
         jButtonTaskDeleteNo = new javax.swing.JButton();
+        jButtonTaskDeleteYes = new javax.swing.JButton();
+
+        jButtonTaskDeleteYes1.setBackground(new java.awt.Color(204, 255, 204));
+        jButtonTaskDeleteYes1.setText("Sim");
+        jButtonTaskDeleteYes1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonTaskDeleteYes1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonTaskDeleteYes1MousePressed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(416, 248));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
@@ -75,20 +87,27 @@ public class DeleteDialogScreen extends javax.swing.JDialog {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/apagar-pasta.png"))); // NOI18N
 
-        jButtonTaskDeleteYes.setBackground(new java.awt.Color(204, 255, 204));
-        jButtonTaskDeleteYes.setText("Sim");
-        jButtonTaskDeleteYes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButtonTaskDeleteYesMousePressed(evt);
-            }
-        });
-
         jButtonTaskDeleteNo.setBackground(new java.awt.Color(204, 255, 204));
         jButtonTaskDeleteNo.setText("Não");
-        jButtonTaskDeleteNo.setActionCommand("Não");
+        jButtonTaskDeleteNo.setFocusable(false);
+        jButtonTaskDeleteNo.setRequestFocusEnabled(false);
+        jButtonTaskDeleteNo.setVerifyInputWhenFocusTarget(false);
         jButtonTaskDeleteNo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButtonTaskDeleteNoMousePressed(evt);
+            }
+        });
+
+        jButtonTaskDeleteYes.setBackground(new java.awt.Color(204, 255, 204));
+        jButtonTaskDeleteYes.setText("Sim");
+        jButtonTaskDeleteYes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonTaskDeleteYes.setDefaultCapable(false);
+        jButtonTaskDeleteYes.setFocusable(false);
+        jButtonTaskDeleteYes.setRequestFocusEnabled(false);
+        jButtonTaskDeleteYes.setVerifyInputWhenFocusTarget(false);
+        jButtonTaskDeleteYes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonTaskDeleteYesMousePressed(evt);
             }
         });
 
@@ -96,45 +115,41 @@ public class DeleteDialogScreen extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
                         .addComponent(jButtonTaskDeleteYes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonTaskDeleteNo)
-                        .addGap(125, 125, 125)))
-                .addContainerGap())
+                        .addGap(119, 119, 119))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(42, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18))
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38)))
-                .addGap(11, 11, 11)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonTaskDeleteNo)
                     .addComponent(jButtonTaskDeleteYes))
-                .addGap(36, 36, 36))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -145,11 +160,15 @@ public class DeleteDialogScreen extends javax.swing.JDialog {
         this.dispose(); 
     }//GEN-LAST:event_jButtonTaskDeleteNoMousePressed
 
+    private void jButtonTaskDeleteYes1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonTaskDeleteYes1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTaskDeleteYes1MousePressed
+
     private void jButtonTaskDeleteYesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonTaskDeleteYesMousePressed
         // TODO add your handling code here:
         taskController.removeById(this.task.getId());
         JOptionPane.showMessageDialog(rootPane, "Tarefa excluída!");
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_jButtonTaskDeleteYesMousePressed
 
     public void readTask(Task t){
@@ -200,6 +219,7 @@ public class DeleteDialogScreen extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonTaskDeleteNo;
     private javax.swing.JButton jButtonTaskDeleteYes;
+    private javax.swing.JButton jButtonTaskDeleteYes1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
