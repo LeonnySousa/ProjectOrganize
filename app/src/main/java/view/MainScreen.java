@@ -159,8 +159,13 @@ public class MainScreen extends javax.swing.JFrame {
         jListProjects.setFixedCellHeight(40);
         jListProjects.setSelectionBackground(new java.awt.Color(0, 153, 102));
         jListProjects.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListProjectsMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jListProjectsMousePressed(evt);
+            }
+        });
+        jListProjects.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jListProjectsKeyReleased(evt);
             }
         });
         jScrollPaneProjects.setViewportView(jListProjects);
@@ -216,13 +221,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelEmptyListLayout.setVerticalGroup(
             jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyListLayout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+                .addGap(156, 156, 156)
                 .addComponent(jLabelEmptyListIcon)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmptyListTitle)
                 .addGap(35, 35, 35)
                 .addComponent(jLabelEmptyListSubTitle)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanelEmptyList, java.awt.BorderLayout.PAGE_START);
@@ -333,7 +338,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jPanelTasks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                     .addComponent(jPanelProjectList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -417,13 +422,19 @@ public class MainScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTableTasksMouseClicked
 
-    private void jListProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListProjectsMouseClicked
+    private void jListProjectsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListProjectsMousePressed
         // TODO add your handling code here:
-        
         int projectIndex = jListProjects.getSelectedIndex();
         Project project = (Project) projectsModel.get(projectIndex);
         loadTasks(project.getId());
-    }//GEN-LAST:event_jListProjectsMouseClicked
+    }//GEN-LAST:event_jListProjectsMousePressed
+
+    private void jListProjectsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListProjectsKeyReleased
+        // TODO add your handling code here:
+        int projectIndex = jListProjects.getSelectedIndex();
+        Project project = (Project) projectsModel.get(projectIndex);
+        loadTasks(project.getId());
+    }//GEN-LAST:event_jListProjectsKeyReleased
 
     /**
      * @param args the command line arguments
