@@ -126,6 +126,29 @@ public class TaskController {
         }
     }
     
+    public void removeByIdProject(int idProject){
+        String sql = "DELETE FROM tasks WHERE idProject = ?";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try{
+            // Creating connection and statement:
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            
+            // Sending values ​​to statement:
+            statement.setInt(1,idProject);
+            
+            // Executing Query:
+            statement.execute();
+            
+        } catch(Exception ex){       
+            throw new RuntimeException("Erro ao deletar Tarefas" + ex.getMessage(),ex); 
+        } finally{            
+            ConnectionFactory.closeConnection(connection, statement);            
+        }
+    }
+    
     public List<Task> getAll(int idProject){
         
         String sql = "SELECT * FROM tasks WHERE idProject = ?";

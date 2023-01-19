@@ -4,22 +4,33 @@
  */
 package view;
 import controller.ProjectController;
+import controller.TaskController;
 import javax.swing.JOptionPane;
 import model.Project;
 /**
  *
  * @author Leonny Sousa
  */
-public class ProjectDialogScreen extends javax.swing.JDialog {
+public class ProjectDialogScreenUpdate extends javax.swing.JDialog {
 
-    ProjectController controller;
+    ProjectController Pcontroller;
+    TaskController Tcontroller;
+    Project project;
     
-    public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
+    public ProjectDialogScreenUpdate(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
-        controller = new ProjectController();
+        Pcontroller = new ProjectController();
+        Tcontroller = new TaskController();
+    }
+    
+    public void readProject(Project p){
+        this.project = p;
         
+        jTextFieldName.setText(project.getName());
+        jTextAreaDescription.setText(project.getDescription());
+
     }
 
     /**
@@ -39,17 +50,17 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         jTextFieldName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescription = new javax.swing.JTextArea();
-        jLabelProjectAdd = new javax.swing.JLabel();
+        jLabelProjectUpdate = new javax.swing.JLabel();
+        jLabelProjectDelete = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(475, 400));
-        setPreferredSize(new java.awt.Dimension(450, 378));
 
         jPanelToolBar.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabelToolBar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelToolBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelToolBar.setText("Project");
+        jLabelToolBar.setText("PROJECT");
 
         javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
         jPanelToolBar.setLayout(jPanelToolBarLayout);
@@ -84,15 +95,28 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         jTextAreaDescription.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDescription);
 
-        jLabelProjectAdd.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelProjectAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabelProjectAdd.setForeground(new java.awt.Color(0, 153, 102));
-        jLabelProjectAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelProjectAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salve.png"))); // NOI18N
-        jLabelProjectAdd.setText("Save");
-        jLabelProjectAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelProjectUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelProjectUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelProjectUpdate.setForeground(new java.awt.Color(0, 153, 102));
+        jLabelProjectUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelProjectUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salve.png"))); // NOI18N
+        jLabelProjectUpdate.setText("Update");
+        jLabelProjectUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelProjectAddMouseClicked(evt);
+                jLabelProjectUpdateMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelProjectUpdateMousePressed(evt);
+            }
+        });
+
+        jLabelProjectDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelProjectDelete.setForeground(new java.awt.Color(0, 153, 102));
+        jLabelProjectDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
+        jLabelProjectDelete.setText("Delete");
+        jLabelProjectDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelProjectDeleteMousePressed(evt);
             }
         });
 
@@ -100,18 +124,21 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         jPanelProject.setLayout(jPanelProjectLayout);
         jPanelProjectLayout.setHorizontalGroup(
             jPanelProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProjectLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProjectLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldName)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProjectLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabelProjectAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelProjectLayout.createSequentialGroup()
+                .addGroup(jPanelProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabelDescription, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelProjectLayout.createSequentialGroup()
                         .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelProjectLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jLabelProjectDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelProjectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)))
                 .addContainerGap())
         );
         jPanelProjectLayout.setVerticalGroup(
@@ -125,9 +152,11 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 .addComponent(jLabelDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabelProjectAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addGap(9, 9, 9)
+                .addGroup(jPanelProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelProjectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelProjectDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,27 +183,50 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabelProjectAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectAddMouseClicked
+    private void jLabelProjectUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectUpdateMouseClicked
+        // TODO add your handling code here      
+    }//GEN-LAST:event_jLabelProjectUpdateMouseClicked
+
+    private void jLabelProjectUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectUpdateMousePressed
         // TODO add your handling code here:
         try{
             if(!jTextFieldName.getText().equals("")){
-                Project project = new Project();
+                
                 project.setName(jTextFieldName.getText());
                 project.setDescription(jTextAreaDescription.getText());
-                controller.save(project);
-                JOptionPane.showMessageDialog(rootPane, "Projeto Cadastrado com Sucesso!"); 
+                Pcontroller.update(project);
+                JOptionPane.showMessageDialog(rootPane, "Projeto atualizado com Sucesso!"); 
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Projeto: O Campo Name é obrigatório!");
+                JOptionPane.showMessageDialog(rootPane, "Erro ao atualizar Projeto!");
             
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
+    }//GEN-LAST:event_jLabelProjectUpdateMousePressed
+
+    private void jLabelProjectDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectDeleteMousePressed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        try{
+                    
+                 Tcontroller.removeByIdProject(this.project.getId());
+                 Pcontroller.removeById(this.project.getId());
+                 JOptionPane.showMessageDialog(rootPane, "Projeto apagado!");
+                 this.dispose();
+   
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Erro ao Deletar Projeto:" + e.getMessage());
+        }
         
         
-    }//GEN-LAST:event_jLabelProjectAddMouseClicked
+        
+        
+        
+
+    }//GEN-LAST:event_jLabelProjectDeleteMousePressed
 
     /**
      * @param args the command line arguments
@@ -193,20 +245,21 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProjectDialogScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjectDialogScreenUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProjectDialogScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjectDialogScreenUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProjectDialogScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjectDialogScreenUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProjectDialogScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjectDialogScreenUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProjectDialogScreen dialog = new ProjectDialogScreen(new javax.swing.JFrame(), true);
+                ProjectDialogScreenUpdate dialog = new ProjectDialogScreenUpdate(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -221,7 +274,8 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelDescription;
     private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel jLabelProjectAdd;
+    private javax.swing.JLabel jLabelProjectDelete;
+    private javax.swing.JLabel jLabelProjectUpdate;
     private javax.swing.JLabel jLabelToolBar;
     private javax.swing.JPanel jPanelProject;
     private javax.swing.JPanel jPanelToolBar;
