@@ -167,7 +167,7 @@ public class TaskDialogScreenUpdate extends javax.swing.JDialog {
 
         jLabelToolBarTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelToolBarTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelToolBarTitle.setText("Task");
+        jLabelToolBarTitle.setText("TASK");
 
         javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
         jPanelToolBar.setLayout(jPanelToolBarLayout);

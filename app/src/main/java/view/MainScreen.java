@@ -254,8 +254,8 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelProjectsEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         jLabelProjectsEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelProjectsEditMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelProjectsEditMouseClicked(evt);
             }
         });
 
@@ -448,7 +448,7 @@ public class MainScreen extends javax.swing.JFrame {
         loadTasks(project.getId());
     }//GEN-LAST:event_jListProjectsKeyReleased
 
-    private void jLabelProjectsEditMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsEditMousePressed
+    private void jLabelProjectsEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsEditMouseClicked
         // TODO add your handling code here:
         int projectIndex = jListProjects.getSelectedIndex();
         Project project = (Project) projectsModel.get(projectIndex);
@@ -464,8 +464,7 @@ public class MainScreen extends javax.swing.JFrame {
                     loadTasks(project.getId());
               }       
         });
-        
-    }//GEN-LAST:event_jLabelProjectsEditMousePressed
+    }//GEN-LAST:event_jLabelProjectsEditMouseClicked
 
     /**
      * @param args the command line arguments

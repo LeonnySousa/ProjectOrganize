@@ -49,7 +49,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
         jLabelToolBar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelToolBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelToolBar.setText("Project");
+        jLabelToolBar.setText("PROJECT");
 
         javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
         jPanelToolBar.setLayout(jPanelToolBarLayout);
