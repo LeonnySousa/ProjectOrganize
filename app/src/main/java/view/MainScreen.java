@@ -13,9 +13,12 @@ import model.Task;
 import controller.ProjectController;
 import controller.TaskController;
 import java.util.ArrayList;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -223,13 +226,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelEmptyListLayout.setVerticalGroup(
             jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyListLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(165, 165, 165)
                 .addComponent(jLabelEmptyListIcon)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmptyListTitle)
                 .addGap(35, 35, 35)
                 .addComponent(jLabelEmptyListSubTitle)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanelEmptyList, java.awt.BorderLayout.PAGE_START);
@@ -634,6 +637,7 @@ public class MainScreen extends javax.swing.JFrame {
         }
         
         jListProjects.setModel(projectsModel);
+              
         
         if(!projectsModel.isEmpty()){
             jListProjects.setSelectedIndex(0);

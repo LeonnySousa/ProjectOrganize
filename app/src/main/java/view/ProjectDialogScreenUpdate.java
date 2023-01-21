@@ -101,6 +101,7 @@ public class ProjectDialogScreenUpdate extends javax.swing.JDialog {
         jLabelProjectUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salve.png"))); // NOI18N
         jLabelProjectUpdate.setText("Update");
+        jLabelProjectUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelProjectUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelProjectUpdateMouseClicked(evt);
