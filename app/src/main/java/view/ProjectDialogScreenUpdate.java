@@ -210,23 +210,33 @@ public class ProjectDialogScreenUpdate extends javax.swing.JDialog {
 
     private void jLabelProjectDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectDeleteMousePressed
         // TODO add your handling code here:
-                // TODO add your handling code here:
-        try{
+        int response = JOptionPane.showConfirmDialog(this, "Deseja continuar a ação?", "Confirme", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        
+        if(response == JOptionPane.YES_OPTION){
+             try{
                     
                  Tcontroller.removeByIdProject(this.project.getId());
                  Pcontroller.removeById(this.project.getId());
-                 JOptionPane.showMessageDialog(rootPane, "Projeto apagado!");
+                 JOptionPane.showMessageDialog(rootPane, "Projeto Excluído!");
                  this.dispose();
    
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Erro ao Deletar Projeto:" + e.getMessage());
+             }catch(Exception e){
+                 JOptionPane.showMessageDialog(rootPane, "Erro ao Deletar Projeto:" + e.getMessage());
+             }        
+        
+             this.dispose();
+        
+        }else if(response == JOptionPane.NO_OPTION){
+        
         }
         
+        /*
+        DeleteProjectDialogScreen deleteProjectDialogScreen = new DeleteProjectDialogScreen();
+        deleteProjectDialogScreen.readProject(project);
+        deleteProjectDialogScreen.setVisible(true);
+        */
         
-        
-        
-        
-
     }//GEN-LAST:event_jLabelProjectDeleteMousePressed
 
     /**

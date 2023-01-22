@@ -354,6 +354,22 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableTasksMousePressed(java.awt.event.MouseEvent evt){
+        // TODO add your handling code here:
+        int rowIndex  = jTableTasks.rowAtPoint(evt.getPoint());
+        int columnIndex  = jTableTasks.columnAtPoint(evt.getPoint());
+        Task task = taskTableModel.getTasks().get(rowIndex);
+        
+                switch(columnIndex){
+        
+            case 3:             
+                taskController.update(task);
+                break;                       
+        
+        }
+    }
+    
+    
     private void jTableTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTasksMouseClicked
         // TODO add your handling code here:
         int rowIndex  = jTableTasks.rowAtPoint(evt.getPoint());
@@ -382,7 +398,7 @@ public class MainScreen extends javax.swing.JFrame {
                 
             case 5:
                 
-                DeleteDialogScreen deleteDialogScreen = new DeleteDialogScreen(this, rootPaneCheckingEnabled);
+                DeleteTaskDialogScreen deleteDialogScreen = new DeleteTaskDialogScreen(this, rootPaneCheckingEnabled);
                 deleteDialogScreen.readTask(task);
                 deleteDialogScreen.setVisible(true);
                 
