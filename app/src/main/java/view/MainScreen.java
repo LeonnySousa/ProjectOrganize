@@ -12,24 +12,11 @@ import model.Project;
 import model.Task;
 import controller.ProjectController;
 import controller.TaskController;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
-import javax.swing.SwingConstants;
-import static javax.swing.SwingConstants.CENTER;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import util.ButtonColumnRenderer;
 import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
@@ -252,17 +239,18 @@ public class MainScreen extends javax.swing.JFrame {
 
         jLabelProjectsAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectsAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add.png"))); // NOI18N
+        jLabelProjectsAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelProjectsAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelProjectsAddMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelProjectsAddMousePressed(evt);
             }
         });
 
         jLabelProjectsEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectsEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         jLabelProjectsEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelProjectsEditMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelProjectsEditMousePressed(evt);
             }
         });
 
@@ -285,9 +273,11 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelProjectsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabelProjectsEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelProjectsAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProjectsLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelProjectsAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelProjectsEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
         );
 
@@ -301,8 +291,8 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelTasksAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTasksAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add.png"))); // NOI18N
         jLabelTasksAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTasksAddMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelTasksAddMousePressed(evt);
             }
         });
 
@@ -364,37 +354,6 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabelProjectsAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsAddMouseClicked
-        // TODO add your handling code here:
-        ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
-        projectDialogScreen.setVisible(true);
-        
-        projectDialogScreen.addWindowListener(new WindowAdapter(){
-            public void windowClosed(WindowEvent e){
-                loadProjects();
-            }
-        });
-    }//GEN-LAST:event_jLabelProjectsAddMouseClicked
-
-    private void jLabelTasksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMouseClicked
-        // TODO add your handling code here:
-        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
-        int projectIndex = jListProjects.getSelectedIndex();
-        Project project = (Project) projectsModel.get(projectIndex);
-        
-        taskDialogScreen.setProject(project);
-        taskDialogScreen.setVisible(true);
-        
-        taskDialogScreen.addWindowListener(new WindowAdapter(){
-            public void windowClosed(WindowEvent e){
-                int projectIndex = jListProjects.getSelectedIndex();
-                Project project = (Project) projectsModel.get(projectIndex);
-                loadTasks(project.getId());
-            }       
-        
-        });
-    }//GEN-LAST:event_jLabelTasksAddMouseClicked
-
     private void jTableTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTasksMouseClicked
         // TODO add your handling code here:
         int rowIndex  = jTableTasks.rowAtPoint(evt.getPoint());
@@ -454,7 +413,9 @@ public class MainScreen extends javax.swing.JFrame {
         loadTasks(project.getId());
     }//GEN-LAST:event_jListProjectsKeyReleased
 
-    private void jLabelProjectsEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsEditMouseClicked
+         
+    
+    private void jLabelProjectsEditMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsEditMousePressed
         // TODO add your handling code here:
         int projectIndex = jListProjects.getSelectedIndex();
         Project project = (Project) projectsModel.get(projectIndex);
@@ -470,7 +431,38 @@ public class MainScreen extends javax.swing.JFrame {
                     loadTasks(project.getId());
               }       
         });
-    }//GEN-LAST:event_jLabelProjectsEditMouseClicked
+    }//GEN-LAST:event_jLabelProjectsEditMousePressed
+
+    private void jLabelProjectsAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsAddMousePressed
+        // TODO add your handling code here:
+        ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
+        projectDialogScreen.setVisible(true);
+        
+        projectDialogScreen.addWindowListener(new WindowAdapter(){
+            public void windowClosed(WindowEvent e){
+                loadProjects();
+            }
+        });
+    }//GEN-LAST:event_jLabelProjectsAddMousePressed
+
+    private void jLabelTasksAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMousePressed
+        // TODO add your handling code here:
+        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
+        int projectIndex = jListProjects.getSelectedIndex();
+        Project project = (Project) projectsModel.get(projectIndex);
+        
+        taskDialogScreen.setProject(project);
+        taskDialogScreen.setVisible(true);
+        
+        taskDialogScreen.addWindowListener(new WindowAdapter(){
+            public void windowClosed(WindowEvent e){
+                int projectIndex = jListProjects.getSelectedIndex();
+                Project project = (Project) projectsModel.get(projectIndex);
+                loadTasks(project.getId());
+            }       
+        
+        });
+    }//GEN-LAST:event_jLabelTasksAddMousePressed
 
     /**
      * @param args the command line arguments
@@ -541,18 +533,36 @@ public class MainScreen extends javax.swing.JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalTextPosition(JLabel.CENTER);
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        //centerRenderer.set
         
         jTableTasks.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        jTableTasks.getColumnModel().getColumn(0).setPreferredWidth(150);
+        jTableTasks.getColumnModel().getColumn(0).setMinWidth(150);
+        jTableTasks.getColumnModel().getColumn(0).setMaxWidth(150);
+        
         jTableTasks.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         jTableTasks.getColumnModel().getColumn(2).
                 setCellRenderer(new DeadlineColumnCellRenderer());
+        jTableTasks.getColumnModel().getColumn(2).setPreferredWidth(100);
+        // jTableTasks.getColumnModel().getColumn(2).setMinWidth(100);
+        jTableTasks.getColumnModel().getColumn(2).setMaxWidth(100);
+        
+        jTableTasks.getColumnModel().getColumn(3).setPreferredWidth(100);
+        // jTableTasks.getColumnModel().getColumn(3).setMinWidth(150);
+        jTableTasks.getColumnModel().getColumn(3).setMaxWidth(100);
         
         jTableTasks.getColumnModel().getColumn(4).
                 setCellRenderer(new ButtonColumnRenderer("edit"));
+        jTableTasks.getColumnModel().getColumn(4).setPreferredWidth(75);
+        jTableTasks.getColumnModel().getColumn(4).setMinWidth(75);
+        jTableTasks.getColumnModel().getColumn(4).setMaxWidth(75);
         
         jTableTasks.getColumnModel().getColumn(5).
                 setCellRenderer(new ButtonColumnRenderer("delete"));
+        jTableTasks.getColumnModel().getColumn(5).setPreferredWidth(75);
+        jTableTasks.getColumnModel().getColumn(5).setMinWidth(75);
+        jTableTasks.getColumnModel().getColumn(5).setMaxWidth(75);
         
         
     }

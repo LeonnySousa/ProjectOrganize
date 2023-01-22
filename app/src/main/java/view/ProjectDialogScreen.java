@@ -157,7 +157,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     private void jLabelProjectAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectAddMouseClicked
         // TODO add your handling code here:
         try{
-            if(!jTextFieldName.getText().equals("")){
+            if(!jTextFieldName.getText().equals("") & jTextFieldName.getText().length()<=16){
                 Project project = new Project();
                 project.setName(jTextFieldName.getText());
                 project.setDescription(jTextAreaDescription.getText());
@@ -165,7 +165,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Projeto Cadastrado com Sucesso!"); 
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Projeto: O Campo Name é obrigatório!");
+                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Projeto: \nO Campo Name é obrigatório! \nVerifique se o campo Name é menor que 17 caracteres!");
             
             }
 

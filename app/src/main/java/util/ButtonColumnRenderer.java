@@ -2,14 +2,11 @@
 
 package util;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableCellRenderer;
-import model.Task;
+
 
 /**
  *

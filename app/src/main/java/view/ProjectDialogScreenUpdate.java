@@ -191,7 +191,7 @@ public class ProjectDialogScreenUpdate extends javax.swing.JDialog {
     private void jLabelProjectUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectUpdateMousePressed
         // TODO add your handling code here:
         try{
-            if(!jTextFieldName.getText().equals("")){
+            if(!jTextFieldName.getText().equals("") & jTextFieldName.getText().length()<=16){
                 
                 project.setName(jTextFieldName.getText());
                 project.setDescription(jTextAreaDescription.getText());
@@ -199,7 +199,7 @@ public class ProjectDialogScreenUpdate extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Projeto atualizado com Sucesso!"); 
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao atualizar Projeto!");
+                JOptionPane.showMessageDialog(rootPane, "Erro ao atualizar Projeto! \nVerifique se o campo Name é menor que 17 caracteres!");
             
             }
 

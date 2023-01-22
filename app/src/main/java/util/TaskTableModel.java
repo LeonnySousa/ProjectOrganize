@@ -16,7 +16,7 @@ import model.Task;
 
 public class TaskTableModel extends AbstractTableModel{
     
-    String[] columns = {"Name","Description","DeadLine","Task Completed","Edit","Delete"};
+    String[] columns = {"Name","Description","DeadLine","Complete","Edit","Delete"};
     List<Task> tasks = new ArrayList();
     
     @Override
