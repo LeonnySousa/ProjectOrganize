@@ -384,6 +384,7 @@ public class MainScreen extends javax.swing.JFrame {
             case 4:    
                 TaskDialogScreenUpdate taskDialogScreenUpdate = new TaskDialogScreenUpdate(this, rootPaneCheckingEnabled);
                 taskDialogScreenUpdate.readTask(task);
+                taskDialogScreenUpdate.setLocationRelativeTo(null);
                 taskDialogScreenUpdate.setVisible(true);
                 
                 taskDialogScreenUpdate.addWindowListener(new WindowAdapter(){
@@ -400,6 +401,7 @@ public class MainScreen extends javax.swing.JFrame {
                 
                 DeleteTaskDialogScreen deleteDialogScreen = new DeleteTaskDialogScreen(this, rootPaneCheckingEnabled);
                 deleteDialogScreen.readTask(task);
+                deleteDialogScreen.setLocationRelativeTo(null);
                 deleteDialogScreen.setVisible(true);
                 
                 /*
@@ -437,6 +439,7 @@ public class MainScreen extends javax.swing.JFrame {
         Project project = (Project) projectsModel.get(projectIndex);
         ProjectDialogScreenUpdate projectDialogScreenUpdate = new ProjectDialogScreenUpdate(this, rootPaneCheckingEnabled);
         projectDialogScreenUpdate.readProject(project);
+        projectDialogScreenUpdate.setLocationRelativeTo(null);
         projectDialogScreenUpdate.setVisible(true);
         
         projectDialogScreenUpdate.addWindowListener(new WindowAdapter(){
@@ -452,6 +455,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void jLabelProjectsAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsAddMousePressed
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
+        projectDialogScreen.setLocationRelativeTo(null);
         projectDialogScreen.setVisible(true);
         
         projectDialogScreen.addWindowListener(new WindowAdapter(){
@@ -468,6 +472,7 @@ public class MainScreen extends javax.swing.JFrame {
         Project project = (Project) projectsModel.get(projectIndex);
         
         taskDialogScreen.setProject(project);
+        taskDialogScreen.setLocationRelativeTo(null);
         taskDialogScreen.setVisible(true);
         
         taskDialogScreen.addWindowListener(new WindowAdapter(){

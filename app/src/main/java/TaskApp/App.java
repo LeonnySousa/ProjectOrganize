@@ -45,6 +45,7 @@ public class App {
            */
            
            EntryPage entryPage = new EntryPage();
+           entryPage.setLocationRelativeTo(null);
            entryPage.setVisible(true);
          
     }

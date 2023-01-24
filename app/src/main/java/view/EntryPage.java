@@ -327,6 +327,7 @@ public class EntryPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Login Válido!");
                 this.dispose();
                 MainScreen mainscreen = new MainScreen();
+                mainscreen.setLocationRelativeTo(null);
                 mainscreen.setVisible(true);
                 break;
             }else if(i < users.size()-1){
