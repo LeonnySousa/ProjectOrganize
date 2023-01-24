@@ -17,6 +17,7 @@ import controller.TaskController;
 import model.Project;
 import model.Task;
 import util.ConnectionFactory;
+import view.EntryPage;
 import view.MainScreen;
 
 public class App {
@@ -43,8 +44,8 @@ public class App {
            System.out.println("Total de projetos no banco de dados: " + tasks.size());
            */
            
-           MainScreen mainscreen = new MainScreen();
-           mainscreen.setVisible(true);
+           EntryPage entryPage = new EntryPage();
+           entryPage.setVisible(true);
          
     }
 }

@@ -378,7 +378,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         switch(columnIndex){
         
-            case 3:             
+            case 3:     
                 taskController.update(task);
                 break;
             case 4:    
@@ -552,8 +552,8 @@ public class MainScreen extends javax.swing.JFrame {
         //centerRenderer.set
         
         jTableTasks.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        jTableTasks.getColumnModel().getColumn(0).setPreferredWidth(150);
-        jTableTasks.getColumnModel().getColumn(0).setMinWidth(150);
+        jTableTasks.getColumnModel().getColumn(0).setPreferredWidth(100);
+        //jTableTasks.getColumnModel().getColumn(0).setMinWidth(150);
         jTableTasks.getColumnModel().getColumn(0).setMaxWidth(150);
         
         jTableTasks.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
