@@ -22,10 +22,11 @@ public class ProjectController {
     public void save(Project project){
         String sql = "INSERT INTO projects"
                 + "(name,"
+                + "idUser,"
                 + "description,"
                 + "createdAt,"
                 + "updatedAt)"
-                + "VALUES(?, ?, ?, ?)";
+                + "VALUES(?, ?, ?, ?, ?)";
         
         Connection connection  = null;
         PreparedStatement statement = null;
@@ -40,9 +41,10 @@ public class ProjectController {
             
             // Sending values ​​to statement
             statement.setString(1,project.getName());
-            statement.setString(2,project.getDescription());
-            statement.setDate(3,new Date(project.getCreatedAt().getTime()));
-            statement.setDate(4,new Date(project.getUpdatedAt().getTime()));
+            statement.setInt(2,project.getIdUser());
+            statement.setString(3,project.getDescription());
+            statement.setDate(4,new Date(project.getCreatedAt().getTime()));
+            statement.setDate(5,new Date(project.getUpdatedAt().getTime()));
             
             // Executing SQL command;
             statement.execute();
@@ -147,6 +149,7 @@ public class ProjectController {
                 Project project = new Project();
                 
                 project.setId(resultSet.getInt("id"));
+                project.setIdUser(resultSet.getInt("idUser"));
                 project.setName(resultSet.getString("name"));
                 project.setDescription(resultSet.getString("description"));
                 project.setCreatedAt(resultSet.getDate("createdAt"));

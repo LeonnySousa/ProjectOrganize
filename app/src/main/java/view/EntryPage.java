@@ -324,13 +324,14 @@ public class EntryPage extends javax.swing.JFrame {
             User user = users.get(i);
             
             if(user.getEmail().equals(email) & user.getSenha().equals(senha)){
-                JOptionPane.showMessageDialog(rootPane, "Login Válido!");
                 this.dispose();
                 MainScreen mainscreen = new MainScreen();
                 mainscreen.setLocationRelativeTo(null);
+                mainscreen.idUser = user.getId();
+                mainscreen.initComponentsModel();
                 mainscreen.setVisible(true);
                 break;
-            }else if(i < users.size()-1){
+            }else if(i == users.size()-1){
                 JOptionPane.showMessageDialog(rootPane, "Login Inválido!!");
             }
             

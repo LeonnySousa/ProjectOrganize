@@ -37,8 +37,11 @@ public class MainScreen extends javax.swing.JFrame {
     DefaultListModel projectsModel;
     TaskTableModel taskTableModel;
     
+    int idUser;
+    
     
     public MainScreen() {
+        
         initComponents(); 
         initDataController();
         initComponentsModel();
@@ -456,6 +459,7 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
         projectDialogScreen.setLocationRelativeTo(null);
+        projectDialogScreen.idUser = this.idUser;
         projectDialogScreen.setVisible(true);
         
         projectDialogScreen.addWindowListener(new WindowAdapter(){
@@ -668,15 +672,17 @@ public class MainScreen extends javax.swing.JFrame {
         
         for (int i = 0; i < projects.size(); i++){
             Project project = projects.get(i);
-            projectsModel.addElement(project);  
+            
+            if(project.getIdUser() == idUser){ 
+                projectsModel.addElement(project);
+            }
         }
         
         jListProjects.setModel(projectsModel);
         jListProjects.setBorder(new EmptyBorder(5, 10, 0, 10)); 
         
 
-       
-   
+        
         if(!projectsModel.isEmpty()){
             jListProjects.setSelectedIndex(0);
             Project project = (Project) projectsModel.get(0);

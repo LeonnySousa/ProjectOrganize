@@ -13,6 +13,7 @@ import model.Project;
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
     ProjectController controller;
+    int idUser;
     
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -156,10 +157,12 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
     private void jLabelProjectAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectAddMouseClicked
         // TODO add your handling code here:
+        
         try{
             if(!jTextFieldName.getText().equals("") & jTextFieldName.getText().length()<=16){
                 Project project = new Project();
                 project.setName(jTextFieldName.getText());
+                project.setIdUser(idUser);
                 project.setDescription(jTextAreaDescription.getText());
                 controller.save(project);
                 JOptionPane.showMessageDialog(rootPane, "Projeto Cadastrado com Sucesso!"); 
