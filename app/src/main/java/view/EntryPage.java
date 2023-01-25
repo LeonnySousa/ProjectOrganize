@@ -340,12 +340,13 @@ public class EntryPage extends javax.swing.JFrame {
 
     private void jButtonSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSignUpMouseClicked
         // TODO add your handling code here:
-               
+         
+        List<User> users = userController.getAll();
+        
         User user = new User();
         user.setEmail(jTextFieldNewUser.getText());
         
-        String pwd1 = jPasswordFieldNewUser.getText();
-        
+        String pwd1 = jPasswordFieldNewUser.getText();   
         String pwd2 = jPasswordFieldNewUser2.getText();
         
         
@@ -355,8 +356,21 @@ public class EntryPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "A senhas não são idênticas!");
         }
         
+        for (int i = 0; i < users.size(); i++){
+            User userRegistered = users.get(i);
+            
+            if( user.getEmail().equals(userRegistered.getEmail()) ){ 
+                JOptionPane.showMessageDialog(rootPane, "E-mail já registrado!");
+                break;
+            } else if(!user.getEmail().equals(userRegistered.getEmail()) & i == users.size()-1 ) {  
+                userController.save(user);
+                JOptionPane.showMessageDialog(rootPane, "E-mail cadastrado com sucesso!");
+                jTabbedPaneEntry.setSelectedIndex(0);
+            }
+        }
         
-        userController.save(user);
+        
+        
     }//GEN-LAST:event_jButtonSignUpMouseClicked
 
     /**
