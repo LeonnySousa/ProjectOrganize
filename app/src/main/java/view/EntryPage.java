@@ -346,9 +346,9 @@ public class EntryPage extends javax.swing.JFrame {
         User user = new User();
         user.setEmail(jTextFieldNewUser.getText());
         
-        String pwd1 = jPasswordFieldNewUser.getText();   
-        String pwd2 = jPasswordFieldNewUser2.getText();
-        
+        String pwd1 = new String(jPasswordFieldNewUser.getPassword()).trim();   
+        String pwd2 = new String(jPasswordFieldNewUser2.getPassword()).trim();
+
         
         if( pwd1.equals(pwd2) ){
             user.setSenha(pwd1);
@@ -359,10 +359,10 @@ public class EntryPage extends javax.swing.JFrame {
         for (int i = 0; i < users.size(); i++){
             User userRegistered = users.get(i);
             
-            if( user.getEmail().equals(userRegistered.getEmail()) ){ 
-                JOptionPane.showMessageDialog(rootPane, "E-mail já registrado!");
+            if( user.getEmail().equals(userRegistered.getEmail()) || user.getEmail().equals("")){ 
+                JOptionPane.showMessageDialog(rootPane, "E-mail não válido ou já registrado!");
                 break;
-            } else if(!user.getEmail().equals(userRegistered.getEmail()) & i == users.size()-1 ) {  
+            } else if(!user.getEmail().equals(userRegistered.getEmail()) && i == users.size()-1 ) {  
                 userController.save(user);
                 JOptionPane.showMessageDialog(rootPane, "E-mail cadastrado com sucesso!");
                 jTabbedPaneEntry.setSelectedIndex(0);
